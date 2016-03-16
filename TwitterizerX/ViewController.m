@@ -21,6 +21,11 @@
 
 - (IBAction)twitterize:(id)sender {
     NSString *textFieldString = self.textField.text;
+    NSUInteger length = textFieldString.length;
+    for (int i = 0; i < length; i++) {
+        NSLog(@"textFieldString[%i] == %c" , i, [textFieldString characterAtIndex: i]);
+
+    }
 }
 
 
