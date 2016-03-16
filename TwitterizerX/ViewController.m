@@ -21,11 +21,19 @@
 
 - (IBAction)twitterize:(id)sender {
     NSString *textFieldString = self.textField.text;
-    NSUInteger length = textFieldString.length;
-    for (int i = 0; i < length; i++) {
-        NSLog(@"textFieldString[%i] == %c" , i, [textFieldString characterAtIndex: i]);
+    NSMutableString *newString = [NSMutableString stringWithString:textFieldString];
 
+    NSArray *vowels = @[@"a", @"e", @"i", @"o", @"u"];
+    for (int i = 0; i < [vowels count]; i++) {
+        NSString *vowel = vowels[i];
+        [newString replaceOccurrencesOfString:vowel
+                                   withString:@""
+                                      options:NSCaseInsensitiveSearch
+                                        range:NSMakeRange(0, newString.length)];
     }
+
+
+
 }
 
 
