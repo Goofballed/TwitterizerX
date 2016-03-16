@@ -9,7 +9,9 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *labelOutlet;
+
 
 @end
 
@@ -20,22 +22,20 @@
 }
 
 - (IBAction)twitterize:(id)sender {
-    NSString *textFieldString = self.textField.text;
-    NSMutableString *newString = [NSMutableString stringWithString:textFieldString];
+    NSString *textViewString = self.textView.text;
+    NSMutableString *stringWithoutVowel = [NSMutableString stringWithString:textViewString];
 
     NSArray *vowels = @[@"a", @"e", @"i", @"o", @"u"];
     for (int i = 0; i < [vowels count]; i++) {
         NSString *vowel = vowels[i];
-        [newString replaceOccurrencesOfString:vowel
+        [stringWithoutVowel replaceOccurrencesOfString:vowel
                                    withString:@""
                                       options:NSCaseInsensitiveSearch
-                                        range:NSMakeRange(0, newString.length)];
+                                        range:NSMakeRange(0, stringWithoutVowel.length)];
     }
 
-
-
+    self.textView.text = stringWithoutVowel;
 }
-
 
 
 @end
